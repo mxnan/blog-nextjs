@@ -5,7 +5,19 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { cn } from "@/lib/utils";
 import Navbar from "@/components/nav/Navbar";
 
+import { Ruda, Urbanist } from "next/font/google";
 
+export const title = Ruda({
+  display: "swap",
+  variable: "--font-title",
+  subsets: ["latin"],
+});
+
+export const body = Urbanist({
+  variable: "--font-body",
+  subsets: ["latin"],
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -21,8 +33,9 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body
         className={cn(
-          " bg-stone-100 dark:bg-zinc-800 text-stone-700 dark:text-stone-300 antialiased",
-       
+          "font-body antialiased bg-stone-100 dark:bg-zinc-800 text-stone-700 dark:text-stone-300 ",
+          title.variable,
+          body.variable
         )}
       >
         <ThemeProvider
@@ -31,7 +44,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <main className="max-w-6xl  mx-auto p-5 space-y-16">
+          <main className="max-w-6xl mx-auto p-5 space-y-16">
             <Navbar />
             {children}
           </main>

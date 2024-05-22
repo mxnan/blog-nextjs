@@ -11,6 +11,11 @@ const config = {
   prefix: "",
   theme: {
     extend: {
+      fontFamily: {
+        // 👇 Add CSS variables
+        title: ["var(--font-title)"],
+        body: ["var(--font-body)"],
+      },
       keyframes: {
         "accordion-down": {
           from: { height: "0" },
