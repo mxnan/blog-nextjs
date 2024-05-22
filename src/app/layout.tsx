@@ -3,18 +3,22 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { cn } from "@/lib/utils";
-import Navbar from "@/components/nav/Navbar";
 
 import { Ruda, Urbanist } from "next/font/google";
+import Footer from "@/components/footer/footer";
+import Navbar from "@/components/nav/navbar";
 
+// title font
 export const title = Ruda({
   display: "swap",
+  weight: ["400", "500", "600", "700", "800", "900"],
   variable: "--font-title",
   subsets: ["latin"],
 });
-
+// body font
 export const body = Urbanist({
   variable: "--font-body",
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
   subsets: ["latin"],
   display: "swap",
 });
@@ -44,9 +48,10 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <main className="max-w-6xl mx-auto p-5 space-y-16">
+          <main className="max-w-6xl mx-auto p-5 space-y-12">
             <Navbar />
             {children}
+            <Footer />
           </main>
         </ThemeProvider>
       </body>

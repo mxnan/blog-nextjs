@@ -8,11 +8,12 @@ export default function Navbar() {
   return (
     <nav className="flex items-center justify-between">
       <ToggleTheme />
-      <div className="flex font-title items-center gap-3">
-        <Link href="/">Home</Link>
-        <Button variant={"outline"} className="flex text-sm items-center gap-2">
-          <VscGithubAlt strokeWidth={1.5} />
-          Login
+      <div className="flex font-title font-semibold items-center gap-3">
+        <Link href="/" className="">
+          Home
+        </Link>
+        <Button size={"icon"} variant={"outline"} className="p-2 rounded-full ">
+          <VscGithubAlt className="w-6 h-6" strokeWidth={1.3} />
         </Button>
       </div>
     </nav>
