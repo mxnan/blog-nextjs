@@ -1,6 +1,7 @@
 "use client";
 import { useTheme } from "next-themes";
 import React, { useEffect, useState } from "react";
+import { Button } from "./ui/button";
 
 const ToggleTheme = () => {
   // State for handling theme (dark/light mode)
@@ -11,10 +12,12 @@ const ToggleTheme = () => {
   useEffect(() => setMounted(true), []);
   return (
     <>
-      <button
+      <Button
         aria-label="Toggle Dark Mode"
         type="button"
-        className="dark-mode-toggle"
+        variant={"default"}
+        size={"icon"}
+        className="rounded-full"
         onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
       >
         {mounted && (
@@ -23,7 +26,7 @@ const ToggleTheme = () => {
             viewBox="0 0 24 24"
             fill="currentColor"
             stroke="currentColor"
-            className="h-5 w-5 text-stone-600 dark:text-stone-300"
+            className="w-6 h-6"
           >
             {theme === "dark" ? (
               <path
@@ -42,7 +45,7 @@ const ToggleTheme = () => {
             )}
           </svg>
         )}
-      </button>
+      </Button>
     </>
   );
 };

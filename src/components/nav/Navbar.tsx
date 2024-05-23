@@ -12,8 +12,8 @@ export default function Navbar() {
         <Link href="/" className="">
           Home
         </Link>
-        <Button size={"icon"} variant={"outline"} className="p-2 rounded-full ">
-          <VscGithubAlt className="w-6 h-6" strokeWidth={1.3} />
+        <Button size={"icon"} variant={"default"} className="p-2 rounded-full ">
+          <VscGithubAlt className="h-6 w-6" strokeWidth={1.2} />
         </Button>
       </div>
     </nav>

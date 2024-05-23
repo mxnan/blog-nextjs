@@ -6,7 +6,7 @@ import { Footerlinks } from "@/lib/constants";
 
 export default function Footer() {
   return (
-    <footer className="relative">
+    <footer className="relative pb-10">
       <div className="flex-1 space-y-8 max-w-xl mx-auto">
         <div className=" relative flex justify-around">
           <ul className="space-y-4">
@@ -48,7 +48,17 @@ export default function Footer() {
             ))}
           </ul>
         </div>
-        <p className="text-center">Copyright © 2024</p>
+        <p className="text-center ">
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://github.com/mxnan"
+            className="mr-2 pb-2 font-title hover:bg-[url('/icons/custom-underline.svg')]"
+          >
+            mxnan
+          </a>
+          © 2024
+        </p>
       </div>
     </footer>
   );
