@@ -1,10 +1,14 @@
+"use client";
 import React from "react";
 import ToggleTheme from "../theme-toggle";
 import Link from "next/link";
-import { Button } from "../ui/button";
-import { VscGithubAlt } from "react-icons/vsc";
+import Login from "./login";
+import { useUser } from "@/lib/store/user";
+import Profile from "./profile";
 
 export default function Navbar() {
+  const user = useUser((state) => state.user);
+  console.log(user);
   return (
     <nav className="flex items-center justify-between">
       <ToggleTheme />
@@ -12,9 +16,7 @@ export default function Navbar() {
         <Link href="/" className="">
           Home
         </Link>
-        <Button size={"icon"} variant={"default"} className="p-2 rounded-full ">
-          <VscGithubAlt className="h-6 w-6" strokeWidth={1.2} />
-        </Button>
+        {user ? <Profile /> : <Login />}
       </div>
     </nav>
   );
