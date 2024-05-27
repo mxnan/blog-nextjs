@@ -11,20 +11,26 @@ import Link from "next/link";
 import { Button } from "../ui/button";
 import { TfiSettings } from "react-icons/tfi";
 import { IoLogOutOutline } from "react-icons/io5";
-import { createClient } from "@/lib/supabase/client";
 import { toast } from "sonner";
+import { createBrowserClient } from "@supabase/ssr";
 
 const DropdownLogout = () => {
+  const supabase = createBrowserClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+  );
   // for reading user data
   const user = useUser((state) => state.user);
   // for logout
   const setUser = useUser((state) => state.setUser);
   // for logout
   const handleLogout = async () => {
-    await createClient().auth.signOut();
+    await supabase.auth.signOut();
     toast.success("Logged out");
     setUser(undefined);
   };
+  // for dashboard Link
+  const isAdmin = user?.user_metadata.role === "admin";
   return (
     <>
       <Popover>
@@ -45,16 +51,20 @@ const DropdownLogout = () => {
             </p>
             <p>{user?.user_metadata.email}</p>
           </div>
-          <Link href="/dashboard">
-            <Button className="flex gap-3 group ">
-              Dashboard{" "}
-              <TfiSettings
-                size={18}
-                strokeWidth={0.5}
-                className="group-hover:rotate-45 transition-transform ease-in-out duration-500"
-              />
-            </Button>
-          </Link>
+          {isAdmin && (
+            <Link href="/dashboard">
+              <Button className="flex gap-3 group ">
+                Dashboard{" "}
+                <TfiSettings
+                  size={18}
+                  strokeWidth={0.5}
+                  className="group-hover:rotate-45 transition-transform ease-in-out duration-500"
+                />
+              </Button>
+            </Link>
+          )}
+          {/* dashboard link */}
+
           {/* logout button */}
           <Button
             onClick={handleLogout}
