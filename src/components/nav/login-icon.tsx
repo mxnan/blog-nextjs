@@ -1,4 +1,3 @@
-"use client";
 import { createClient } from "@/lib/supabase/client";
 import { usePathname } from "next/navigation";
 import React from "react";
@@ -6,7 +5,7 @@ import { toast } from "sonner";
 import { Button } from "../ui/button";
 import { TbBrandGithubFilled } from "react-icons/tb";
 
-export default function Login() {
+const LoginIcon = () => {
   // getting pathname
   const pathname = usePathname();
   // for login
@@ -36,4 +35,6 @@ export default function Login() {
       </Button>
     </>
   );
-}
+};
+
+export default LoginIcon;

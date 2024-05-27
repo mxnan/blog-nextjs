@@ -16,11 +16,11 @@ export default function Footer() {
                 key={index}
               >
                 <Link
-                  className="p-1 flex gap-2 text-secondary "
+                  className="p-1 flex items-center gap-2 text-secondary "
                   href={item.href}
                 >
                   {item.name}
-                  <TiLocationArrow className="group-hover:translate-x-4 group-hover:rotate-12 transition-transform ease-in-out duration-500" />
+                  <TiLocationArrow className="group-hover:translate-x-4 group-hover:rotate-45 transition-transform ease-in-out duration-500" />
                 </Link>
               </li>
             ))}
@@ -38,11 +38,11 @@ export default function Footer() {
                 <a
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-1 flex gap-2 text-secondary "
+                  className="p-1 flex items-center gap-2 text-secondary "
                   href={item.href}
                 >
                   {item.name}
-                  <TiLocationArrow className="group-hover:translate-x-4 group-hover:rotate-12 transition-transform ease-in-out duration-500" />
+                  <TiLocationArrow className="group-hover:translate-x-4 group-hover:rotate-45 transition-transform ease-in-out duration-500" />
                 </a>
               </li>
             ))}

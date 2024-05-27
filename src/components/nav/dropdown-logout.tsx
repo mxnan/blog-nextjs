@@ -14,7 +14,7 @@ import { IoLogOutOutline } from "react-icons/io5";
 import { createClient } from "@/lib/supabase/client";
 import { toast } from "sonner";
 
-export default function Profile() {
+const DropdownLogout = () => {
   // for reading user data
   const user = useUser((state) => state.user);
   // for logout
@@ -71,4 +71,6 @@ export default function Profile() {
       </Popover>
     </>
   );
-}
+};
+
+export default DropdownLogout;
