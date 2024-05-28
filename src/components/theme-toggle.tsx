@@ -26,7 +26,7 @@ const ToggleTheme = () => {
             viewBox="0 0 24 24"
             fill="currentColor"
             stroke="currentColor"
-            className="w-6 h-6"
+            className="w-6 h-6 text-darkmode dark:text-lightmode "
           >
             {theme === "dark" ? (
               <path

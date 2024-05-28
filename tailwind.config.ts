@@ -11,6 +11,11 @@ const config = {
   prefix: "",
   theme: {
     extend: {
+      colors: {
+        lightmode: "#f97316",
+        darkmode: "#0ea5e9",
+      },
+
       fontFamily: {
         // 👇 Add CSS variables
         title: ["var(--font-title)"],

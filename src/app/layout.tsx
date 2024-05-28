@@ -6,7 +6,9 @@ import { cn } from "@/lib/utils";
 
 import { Ruda, Urbanist } from "next/font/google";
 import Footer from "@/components/footer/footer";
-import Navbar from "@/components/nav/navbar";
+import Navbar from "@/components/nav/Navbar";
+import { Toaster } from "@/components/ui/sonner";
+import SessionProvider from "@/components/session-provider";
 
 // title font
 export const title = Ruda({
@@ -53,6 +55,8 @@ export default function RootLayout({
             {children}
             <Footer />
           </main>
+          <Toaster position="top-center" />
+          <SessionProvider />
         </ThemeProvider>
       </body>
     </html>

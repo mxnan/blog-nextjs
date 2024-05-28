@@ -1,8 +1,8 @@
 import React from "react";
 import ToggleTheme from "../theme-toggle";
 import Link from "next/link";
-import { Button } from "../ui/button";
-import { VscGithubAlt } from "react-icons/vsc";
+import AuthButton from "./auth-button";
+
 
 export default function Navbar() {
   return (
@@ -12,9 +12,7 @@ export default function Navbar() {
         <Link href="/" className="">
           Home
         </Link>
-        <Button size={"icon"} variant={"default"} className="p-2 rounded-full ">
-          <VscGithubAlt className="h-6 w-6" strokeWidth={1.2} />
-        </Button>
+        <AuthButton />
       </div>
     </nav>
   );
