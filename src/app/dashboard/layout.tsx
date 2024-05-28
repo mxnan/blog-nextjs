@@ -4,7 +4,7 @@ import { Separator } from "@/components/ui/separator";
 
 export default function layout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="space-y-8">
+    <div className="space-y-12">
       <NavLinks />
       <Separator
         orientation="horizontal"

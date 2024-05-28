@@ -11,6 +11,9 @@ const config = {
   prefix: "",
   theme: {
     extend: {
+      screens: {
+        xs: "480px",
+      },
       colors: {
         lightmode: "#f97316",
         darkmode: "#0ea5e9",
