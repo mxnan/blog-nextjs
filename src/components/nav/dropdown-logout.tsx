@@ -40,7 +40,7 @@ const DropdownLogout = () => {
             alt={user?.user_metadata.full_name}
             width={40}
             height={40}
-            className="rounded-full ring-2 ring-sky-500 dark:ring-emerald-500"
+            className="rounded-full ring-2 ring-lightmode dark:ring-darkmode"
           />
         </PopoverTrigger>
         <PopoverContent className="flex flex-col gap-3">
@@ -58,7 +58,7 @@ const DropdownLogout = () => {
                 <TfiSettings
                   size={18}
                   strokeWidth={0.5}
-                  className="group-hover:rotate-45 transition-transform ease-in-out duration-500"
+                  className="group-hover:rotate-45 text-lightmode dark:text-darkmode transition-transform ease-in-out duration-500"
                 />
               </Button>
             </Link>
@@ -74,7 +74,7 @@ const DropdownLogout = () => {
             <IoLogOutOutline
               size={18}
               strokeWidth={0.5}
-              className="group-hover:-rotate-12 transition-transform ease-in-out duration-500"
+              className="group-hover:-rotate-12 text-lightmode dark:text-darkmode  transition-transform ease-in-out duration-500"
             />
           </Button>
         </PopoverContent>

@@ -8,7 +8,7 @@ export default function layout({ children }: { children: React.ReactNode }) {
       <NavLinks />
       <Separator
         orientation="horizontal"
-        className="bg-sky-200 dark:bg-emerald-900 max-w-2xl"
+        className="bg-lightmode dark:bg-darkmode max-w-2xl"
       />
       {children}
     </div>

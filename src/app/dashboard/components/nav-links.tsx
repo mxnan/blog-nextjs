@@ -34,7 +34,7 @@ export default function NavLinks() {
         >
           <Icon
             className={cn("rounded-full border p-1 w-6 h-6", {
-              "text-sky-600 dark:text-emerald-600 border-sky-600 dark:border-emerald-600":
+              "text-lightmode dark:text-darkmode border-lightmode dark:border-darkmode":
                 pathname === href,
             })}
           />

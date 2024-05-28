@@ -8,12 +8,11 @@ import { TbTrashX } from "react-icons/tb";
 
 const BlogTable = () => {
   return (
-    <div className="relative overflow-x-auto">
+    <div className="relative overflow-x-auto p-5 rounded-md">
       <div
-        className="border-b border-stone-300 dark:border-zinc-700
-     shadow-lg dark:shadow-zinc-700
+        className="border-b border-lightmode dark:border-darkmode
       w-[700px] md:w-full
-       rounded-lg"
+       rounded-2xl"
       >
         <div className="grid grid-cols-5 p-5  ">
           <h1 className="col-span-2">Title</h1>
@@ -22,7 +21,7 @@ const BlogTable = () => {
         </div>
         <Separator
           orientation="horizontal"
-          className="bg-sky-200 dark:bg-emerald-900 max-w-3xl my-4"
+          className="bg-lightmode dark:bg-darkmode max-w-3xl my-4"
         />
         <div className="grid grid-cols-5 items-center p-5">
           <h1 className="col-span-2">Blog 1</h1>

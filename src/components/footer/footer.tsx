@@ -20,14 +20,14 @@ export default function Footer() {
                   href={item.href}
                 >
                   {item.name}
-                  <TiLocationArrow className="group-hover:translate-x-4 group-hover:rotate-45 transition-transform ease-in-out duration-500" />
+                  <TiLocationArrow className="group-hover:translate-x-4 text-lightmode dark:text-darkmode group-hover:rotate-45 transition-transform ease-in-out duration-500" />
                 </Link>
               </li>
             ))}
           </ul>
           <Separator
             orientation="vertical"
-            className="bg-stone-500 dark:bg-stone-400  absolute"
+            className=" absolute"
           />
           <ul className="space-y-4">
             {Footerlinks.right.map((item, index: number) => (
@@ -42,7 +42,7 @@ export default function Footer() {
                   href={item.href}
                 >
                   {item.name}
-                  <TiLocationArrow className="group-hover:translate-x-4 group-hover:rotate-45 transition-transform ease-in-out duration-500" />
+                  <TiLocationArrow className="group-hover:translate-x-4 text-lightmode dark:text-darkmode group-hover:rotate-45 transition-transform ease-in-out duration-500" />
                 </a>
               </li>
             ))}

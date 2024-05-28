@@ -26,8 +26,9 @@ const LoginIcon = () => {
 
   return (
     <>
-      <Button size={"icon"} className="rounded-full" onClick={handleLogin}>
-        <TbBrandGithubFilled className="w-6 h-6" />
+      <Button  className="rounded-2xl flex gap-2" onClick={handleLogin}>
+        <TbBrandGithubFilled className="w-6 h-6 text-lightmode dark:text-darkmode " />
+        Login
       </Button>
     </>
   );
