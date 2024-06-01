@@ -25,6 +25,7 @@ import { Separator } from "@/components/ui/separator";
 import { useState } from "react";
 import { FiEdit2 } from "react-icons/fi";
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 
 const FormSchema = z.object({
   title: z.string().min(2, {
@@ -65,11 +66,13 @@ export default function BlogForm() {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="max-w-3xl w-full mx-auto flex flex-col gap-4"
+        className="max-w-3xl w-full mx-auto flex flex-col gap-8"
       >
         {/* top div */}
         <div className="flex  justify-between ">
+          {/* top left div */}
           <div className="flex max-sm:flex-wrap gap-2 sm:gap-4 lg:gap-8">
+            {/* Preview button */}
             <span
               role="button"
               className="flex items-center gap-2 w-min px-3 py-2 
@@ -153,7 +156,8 @@ export default function BlogForm() {
           orientation="horizontal"
           className="bg-lightmode dark:bg-darkmode my-6 max-w-lg"
         />
-        {/*  */}
+        {/* title field */}
+
         <FormField
           control={form.control}
           name="title"
@@ -170,7 +174,7 @@ export default function BlogForm() {
                     placeholder="Title ..."
                     {...field}
                     className={cn(
-                      "border-none text-lg font-medium leading-relaxed",
+                      "border-none placeholder:text-base placeholder:text-stone-400 placeholder:dark:text-stone-600 text-lg font-medium leading-relaxed",
                       isPreview ? "w-0 p-0" : "w-full "
                     )}
                   />
@@ -194,9 +198,76 @@ export default function BlogForm() {
           )}
         />
         {/*  */}
+        {/* image_url field */}
+        <FormField
+          control={form.control}
+          name="image_url"
+          render={({ field }) => (
+            <FormItem>
+              <FormControl>
+                <div
+                  className={cn(
+                    "px-2 w-full flex items-center break-words gap-4",
+                    isPreview ? "divide-x-0" : "divide-x"
+                  )}
+                >
+                  <Input
+                    placeholder="https://images.unsplash.com/**"
+                    {...field}
+                    className={cn(
+                      "border-none placeholder:text-base placeholder:text-stone-400 placeholder:dark:text-stone-600 text-lg font-medium leading-relaxed ",
+                      isPreview ? "w-0 p-0" : "w-full "
+                    )}
+                  />
+                  <div
+                    className={cn(
+                      "lg:px-4",
+                      isPreview
+                        ? "mx-auto w-full lg:w-5/6 "
+                        : "w-1/2 lg:block hidden"
+                    )}
+                  >
+                    {!isPreview ? (
+                      <>
+                        {/* Preview button */}
+                        <span
+                          role="button"
+                          className="flex items-center gap-2 w-min px-3 py-2 
+            rounded-full bg-stone-800/80 text-stone-50
+             hover:bg-stone-800 dark:bg-stone-50/90
+              dark:text-zinc-800 dark:hover:bg-stone-50"
+                          tabIndex={0}
+                          onClick={() => setIsPreview(!isPreview)}
+                        >
+                          <PiEyeglassesLight className="w-5 h-5" />
+                          Preview
+                        </span>
+                      </>
+                    ) : (
+                      <div className="relative  h-80 mt-8 image-border rounded-xl">
+                        <Image
+                          src={form.getValues().image_url}
+                          alt="Preview"
+                          fill
+                          className="object-cover object-center rounded-xl"
+                        />
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </FormControl>
+              {form.getFieldState("image_url").invalid &&
+                form.getValues().image_url && (
+                  <div className="p-2">
+                    <FormMessage />
+                  </div>
+                )}
+            </FormItem>
+          )}
+        />
+        {/*  */}
       </form>
     </Form>
   );
 }
 
-// video 1:22 add input fields
