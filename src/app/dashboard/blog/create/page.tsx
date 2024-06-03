@@ -8,10 +8,8 @@ import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
@@ -26,20 +24,39 @@ import { useState } from "react";
 import { FiEdit2 } from "react-icons/fi";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
+import { Textarea } from "@/components/ui/textarea";
+import MarkdownPreview from "@/components/markdown/markdown-preview";
+import path from "path";
 
-const FormSchema = z.object({
-  title: z.string().min(2, {
-    message: "Title must be at least 2 characters.",
-  }),
-  image_url: z.string().url({
-    message: "Must be a valid URL.",
-  }),
-  content: z.string().min(2, {
-    message: "Content must be at least 2 characters.",
-  }),
-  is_published: z.boolean(),
-  is_premium: z.boolean(),
-});
+const FormSchema = z
+  .object({
+    title: z.string().min(2, {
+      message: "Title must be at least 2 characters.",
+    }),
+    image_url: z.string().url({
+      message: "Must be a valid URL.",
+    }),
+    content: z.string().min(10, {
+      message: "Content must be at least 10 characters.",
+    }),
+    is_published: z.boolean(),
+    is_premium: z.boolean(),
+  })
+  .refine(
+    (data) => {
+      const image_url = data.image_url;
+      try {
+        const url = new URL(image_url);
+        return url.hostname === "images.unsplash.com";
+      } catch {
+        return false;
+      }
+    },
+    {
+      message: "Only unsplash supported for now",
+      path: ["image_url"],
+    }
+  );
 
 export default function BlogForm() {
   const [isPreview, setIsPreview] = useState(false);
@@ -66,7 +83,7 @@ export default function BlogForm() {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="max-w-3xl w-full mx-auto flex flex-col gap-8"
+        className="max-w-3xl w-full mx-auto flex flex-col gap-8 "
       >
         {/* top div */}
         <div className="flex  justify-between ">
@@ -80,7 +97,11 @@ export default function BlogForm() {
              hover:bg-stone-800 dark:bg-stone-50/90
               dark:text-zinc-800 dark:hover:bg-stone-50"
               tabIndex={0}
-              onClick={() => setIsPreview(!isPreview)}
+              onClick={() =>
+                setIsPreview(
+                  !isPreview && !form.getFieldState("image_url").invalid
+                )
+              }
             >
               {isPreview ? (
                 <>
@@ -152,12 +173,13 @@ export default function BlogForm() {
             Save
           </Button>
         </div>
+
         <Separator
           orientation="horizontal"
           className="bg-lightmode dark:bg-darkmode my-6 max-w-lg"
         />
-        {/* title field */}
 
+        {/* title field */}
         <FormField
           control={form.control}
           name="title"
@@ -197,7 +219,7 @@ export default function BlogForm() {
             </FormItem>
           )}
         />
-        {/*  */}
+
         {/* image_url field */}
         <FormField
           control={form.control}
@@ -215,8 +237,8 @@ export default function BlogForm() {
                     placeholder="https://images.unsplash.com/**"
                     {...field}
                     className={cn(
-                      "border-none placeholder:text-base placeholder:text-stone-400 placeholder:dark:text-stone-600 text-lg font-medium leading-relaxed ",
-                      isPreview ? "w-0 p-0" : "w-full "
+                      "border-none placeholder:text-base placeholder:text-stone-400 placeholder:dark:text-stone-600 text-sm font-medium leading-relaxed ",
+                      isPreview ? "w-0 p-0" : "w-full"
                     )}
                   />
                   <div
@@ -233,11 +255,16 @@ export default function BlogForm() {
                         <span
                           role="button"
                           className="flex items-center gap-2 w-min px-3 py-2 
-            rounded-full bg-stone-800/80 text-stone-50
-             hover:bg-stone-800 dark:bg-stone-50/90
-              dark:text-zinc-800 dark:hover:bg-stone-50"
+                             rounded-full bg-stone-800/80 text-stone-50
+                              hover:bg-stone-800 dark:bg-stone-50/90
+                          dark:text-zinc-800 dark:hover:bg-stone-50"
                           tabIndex={0}
-                          onClick={() => setIsPreview(!isPreview)}
+                          onClick={() =>
+                            setIsPreview(
+                              !isPreview &&
+                                !form.getFieldState("image_url").invalid
+                            )
+                          }
                         >
                           <PiEyeglassesLight className="w-5 h-5" />
                           Preview
@@ -265,9 +292,44 @@ export default function BlogForm() {
             </FormItem>
           )}
         />
-        {/*  */}
+
+        {/* content field */}
+        <FormField
+          control={form.control}
+          name="content"
+          render={({ field }) => (
+            <FormItem>
+              <FormControl>
+                <div
+                  className={cn(
+                    "px-2 w-full flex items-center break-words ",
+                    isPreview && " mt-12"
+                  )}
+                >
+                  <Textarea
+                    placeholder="Content ..."
+                    {...field}
+                    className={cn(
+                      "border-none placeholder:text-base resize-none h-full placeholder:text-stone-400 placeholder:dark:text-stone-600 text-sm font-medium leading-relaxed",
+                      isPreview ? "w-0 hidden h-full" : "w-full min-h-96"
+                    )}
+                  />
+                  <div
+                    className={cn(
+                      "hidden",
+                      isPreview && " block space-y-8 w-full "
+                    )}
+                  >
+                    <MarkdownPreview content={form.getValues().content} />
+                  </div>
+                </div>
+              </FormControl>
+              {form.getFieldState("content").invalid &&
+                form.getValues().content && <FormMessage />}
+            </FormItem>
+          )}
+        />
       </form>
     </Form>
   );
 }
-
