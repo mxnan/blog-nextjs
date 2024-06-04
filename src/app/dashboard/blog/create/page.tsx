@@ -3,7 +3,8 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-
+import { Separator } from "@/components/ui/separator";
+import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -12,51 +13,19 @@ import {
   FormItem,
   FormMessage,
 } from "@/components/ui/form";
+import { Switch } from "@/components/ui/switch";
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
 import { PiEyeglassesLight } from "react-icons/pi";
-import { Switch } from "@/components/ui/switch";
 import { IoStarOutline } from "react-icons/io5";
 import { SlRocket } from "react-icons/sl";
 import { MdSaveAlt } from "react-icons/md";
-import { Separator } from "@/components/ui/separator";
-import { useState } from "react";
 import { FiEdit2 } from "react-icons/fi";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
-import { Textarea } from "@/components/ui/textarea";
+import { useState } from "react";
 import MarkdownPreview from "@/components/markdown/markdown-preview";
-import path from "path";
-
-const FormSchema = z
-  .object({
-    title: z.string().min(2, {
-      message: "Title must be at least 2 characters.",
-    }),
-    image_url: z.string().url({
-      message: "Must be a valid URL.",
-    }),
-    content: z.string().min(10, {
-      message: "Content must be at least 10 characters.",
-    }),
-    is_published: z.boolean(),
-    is_premium: z.boolean(),
-  })
-  .refine(
-    (data) => {
-      const image_url = data.image_url;
-      try {
-        const url = new URL(image_url);
-        return url.hostname === "images.unsplash.com";
-      } catch {
-        return false;
-      }
-    },
-    {
-      message: "Only unsplash supported for now",
-      path: ["image_url"],
-    }
-  );
+import { FormSchema } from "@/lib/types";
 
 export default function BlogForm() {
   const [isPreview, setIsPreview] = useState(false);

@@ -37,7 +37,7 @@ const BlogTable = () => {
 
 export default BlogTable;
 
-const Actions = () => {
+export const Actions = () => {
   return (
     <div className="flex items-center gap-5 flex-wrap">
       <Button variant={"outline"} className="flex items-center gap-2">

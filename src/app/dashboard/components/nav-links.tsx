@@ -1,25 +1,12 @@
 "use client";
 import React from "react";
-import { TfiSettings } from "react-icons/tfi";
-import { FiUser } from "react-icons/fi";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
+import { links } from "@/lib/constants";
 
 export default function NavLinks() {
   const pathname = usePathname();
-  const links = [
-    {
-      href: "/dashboard",
-      text: "/dashboard",
-      Icon: TfiSettings,
-    },
-    {
-      href: "/dashboard/user",
-      text: "/user",
-      Icon: FiUser,
-    },
-  ];
 
   return (
     <div className="flex gap-6">
