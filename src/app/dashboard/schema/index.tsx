@@ -1,6 +1,6 @@
-import { z } from "zod";
+import * as z from "zod";
 
-export const FormSchema = z
+export const BlogFormSchema = z
   .object({
     title: z.string().min(2, {
       message: "Title must be at least 2 characters.",
@@ -29,3 +29,6 @@ export const FormSchema = z
       path: ["image_url"],
     }
   );
+
+
+  export type BlogFormSchemaType = z.infer<typeof BlogFormSchema>
