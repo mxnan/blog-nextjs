@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+  .image-border {
+    @apply border-[1px] border-zinc-500 shadow-2xl shadow-zinc-400 dark:shadow-zinc-600;
+  }
+}

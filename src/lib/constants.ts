@@ -1,3 +1,6 @@
+import { FiUser } from "react-icons/fi";
+import { TfiSettings } from "react-icons/tfi";
+
 export const Footerlinks: Record<string, { name: string; href: string }[]> = {
   left: [
     {
@@ -24,3 +27,16 @@ export const Footerlinks: Record<string, { name: string; href: string }[]> = {
     },
   ],
 };
+
+export const links: { href: string; text: string; Icon: any }[] = [
+  {
+    href: "/dashboard",
+    text: "/dashboard",
+    Icon: TfiSettings,
+  },
+  {
+    href: "/dashboard/user",
+    text: "/user",
+    Icon: FiUser,
+  },
+];
