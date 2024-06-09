@@ -1,8 +1,6 @@
-"use client";
-
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import * as z from "zod";
+
 import { Separator } from "@/components/ui/separator";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
@@ -34,7 +32,7 @@ export default function BlogForm({
 }) {
   const [isPreview, setIsPreview] = useState(false);
   const router = useRouter();
-  const form = useForm<z.infer<typeof BlogFormSchema>>({
+  const form = useForm<BlogFormSchemaType>({
     mode: "all",
     resolver: zodResolver(BlogFormSchema),
     defaultValues: {
@@ -46,7 +44,7 @@ export default function BlogForm({
     },
   });
 
-  function onSubmit(data: z.infer<typeof BlogFormSchema>) {
+  function onSubmit(data: BlogFormSchemaType) {
     onHandleSubmit(data);
     form.reset(); // Reset the form after calling onHandleSubmit
     router.push("/dashboard"); // Redirect to the /dashboard page

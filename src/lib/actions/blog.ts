@@ -18,6 +18,7 @@ const supabase = createServerClient<Database>(
   }
 );
 
+//function to create blog and save to supabase
 export async function createBlog(data: BlogFormSchemaType) {
   const { content, ...blogData } = data;
 
@@ -36,4 +37,12 @@ export async function createBlog(data: BlogFormSchemaType) {
     //revalidation
     return JSON.stringify(result);
   }
+}
+
+//function to read blog and display on dashboard
+export async function readBlog() {
+  return supabase
+    .from("blog")
+    .select("*")
+    .order("created_at", { ascending: true });
 }

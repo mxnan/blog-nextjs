@@ -1,19 +1,18 @@
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Switch } from "@/components/ui/switch";
+import { readBlog } from "@/lib/actions/blog";
 import React from "react";
 import { FiEdit2 } from "react-icons/fi";
 import { PiEyeglassesLight } from "react-icons/pi";
 import { TbTrashX } from "react-icons/tb";
 
-const BlogTable = () => {
+const BlogTable = async () => {
+  const { data: blogs } = await readBlog();
+
   return (
     <div className="relative overflow-x-auto p-5 rounded-md">
-      <div
-        className="border-b border-lightmode dark:border-darkmode
-      w-[700px] md:w-full
-       rounded-2xl"
-      >
+      <div className="w-[700px] md:w-full">
         <div className="grid grid-cols-5 p-5  ">
           <h1 className="col-span-2">Title</h1>
           <h1>Premium</h1>
@@ -23,13 +22,22 @@ const BlogTable = () => {
           orientation="horizontal"
           className="bg-lightmode dark:bg-darkmode max-w-3xl my-4"
         />
-        <div className="grid grid-cols-5 items-center p-5">
-          <h1 className="col-span-2">Blog 1</h1>
-          <Switch defaultChecked={false} />
-          <Switch defaultChecked={true} />
-
-          <Actions />
-        </div>
+        {blogs?.map((blog, index) => {
+          return (
+            <div key={index}>
+              <div className="grid grid-cols-5 items-center p-5">
+                <h1 className="col-span-2">{blog.title}</h1>
+                <Switch defaultChecked={blog.is_premium} />
+                <Switch defaultChecked={blog.is_published} />
+                <Actions />
+              </div>
+              <Separator
+                orientation="horizontal"
+                className="bg-lightmode dark:bg-darkmode max-w-sm my-4"
+              />
+            </div>
+          );
+        })}
       </div>
     </div>
   );
