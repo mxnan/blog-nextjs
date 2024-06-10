@@ -5,7 +5,7 @@ import { readBlog } from "@/lib/actions/blog";
 import React from "react";
 import { FiEdit2 } from "react-icons/fi";
 import { PiEyeglassesLight } from "react-icons/pi";
-import { TbTrashX } from "react-icons/tb";
+import DeleteAlert from "./delete-alert";
 
 const BlogTable = async () => {
   const { data: blogs } = await readBlog();
@@ -29,7 +29,7 @@ const BlogTable = async () => {
                 <h1 className="col-span-2">{blog.title}</h1>
                 <Switch defaultChecked={blog.is_premium} />
                 <Switch defaultChecked={blog.is_published} />
-                <Actions />
+                <Actions id={blog.id} />
               </div>
               <Separator
                 orientation="horizontal"
@@ -45,15 +45,13 @@ const BlogTable = async () => {
 
 export default BlogTable;
 
-export const Actions = () => {
+export const Actions = ({ id }: { id: string }) => {
   return (
     <div className="flex items-center gap-5 flex-wrap">
       <Button variant={"outline"} className="flex items-center gap-2">
         <PiEyeglassesLight className="w-5 h-5" /> View
       </Button>
-      <Button variant={"outline"} className="flex items-center gap-2">
-        <TbTrashX className="w-5 h-5" /> Delete
-      </Button>
+      <DeleteAlert blogId={id} />
       <Button variant={"outline"} className="flex items-center gap-2">
         <FiEdit2 className="w-5 h-5" /> View
       </Button>
