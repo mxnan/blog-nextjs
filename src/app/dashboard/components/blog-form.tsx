@@ -24,11 +24,14 @@ import { useState } from "react";
 import MarkdownPreview from "@/components/markdown/markdown-preview";
 import { BlogFormSchema, BlogFormSchemaType } from "../schema";
 import { useRouter } from "next/navigation";
+import { IBlogDetail } from "@/lib/types";
 
 export default function BlogForm({
   onHandleSubmit,
+  blog,
 }: {
   onHandleSubmit: (data: BlogFormSchemaType) => void;
+  blog?: IBlogDetail;
 }) {
   const [isPreview, setIsPreview] = useState(false);
   const router = useRouter();
@@ -36,11 +39,11 @@ export default function BlogForm({
     mode: "all",
     resolver: zodResolver(BlogFormSchema),
     defaultValues: {
-      title: "",
-      image_url: "",
-      content: "",
-      is_published: true,
-      is_premium: false,
+      title: blog?.title || "",
+      image_url: blog?.image_url || "",
+      content: blog?.blog_content?.content || "",
+      is_published: blog?.is_published || true,
+      is_premium: blog?.is_premium || false,
     },
   });
 

@@ -8,6 +8,7 @@ import { PiEyeglassesLight } from "react-icons/pi";
 import DeleteAlert from "./delete-alert";
 import SwitchForm from "./switch-form";
 import { BlogFormSchemaType } from "../schema";
+import Link from "next/link";
 
 const BlogTable = async () => {
   const { data: blogs } = await readBlog();
@@ -70,9 +71,11 @@ export const Actions = ({ id }: { id: string }) => {
         <PiEyeglassesLight className="w-5 h-5" /> View
       </Button>
       <DeleteAlert blogId={id} />
-      <Button variant={"outline"} className="flex items-center gap-2">
-        <FiEdit2 className="w-5 h-5" /> Edit
-      </Button>
+      <Link href={"/dashboard/blog/edit/" + id}>
+        <Button variant={"outline"} className="flex items-center gap-2">
+          <FiEdit2 className="w-5 h-5" /> Edit
+        </Button>
+      </Link>
     </div>
   );
 };

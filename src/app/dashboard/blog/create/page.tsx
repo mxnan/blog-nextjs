@@ -23,4 +23,4 @@ export default function page() {
   );
 }
 
-// video 2:14 blog submitted
+
