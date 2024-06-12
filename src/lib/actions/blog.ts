@@ -55,3 +55,11 @@ export async function deleteBlogbyId(blog_id: string) {
   revalidatePath(DASHBOARD);
   return JSON.stringify(result);
 }
+
+
+//function for switch form
+export async function updateBlogbyId(blog_id: string, data: BlogFormSchemaType) {
+  const result = await supabase.from("blog").update(data).eq("id", blog_id);
+  revalidatePath(DASHBOARD);
+  return JSON.stringify(result);
+}
