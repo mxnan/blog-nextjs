@@ -15,8 +15,8 @@ const config = {
         xs: "480px",
       },
       colors: {
-        lightmode: "#64b5f6",
-        darkmode: "#5829a7",
+        lightmode: "#e2711d",
+        darkmode: "#2CA5DD",
       },
 
       fontFamily: {

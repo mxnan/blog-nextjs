@@ -57,7 +57,7 @@ export default function BlogForm({
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="max-w-3xl w-full mx-auto flex flex-col gap-8 "
+        className="max-w-4xl w-full mx-auto flex flex-col gap-8 "
       >
         {/* top div */}
         <div className="flex  justify-between ">

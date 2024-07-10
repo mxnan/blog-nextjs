@@ -15,9 +15,9 @@ const ToggleTheme = () => {
       <Button
         aria-label="Toggle Dark Mode"
         type="button"
-        variant={"default"}
+        variant={"ghost"}
         size={"icon"}
-        className="rounded-full"
+        className="rounded-full "
         onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
       >
         {mounted && (

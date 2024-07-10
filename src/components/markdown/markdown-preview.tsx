@@ -2,6 +2,7 @@ import React from "react";
 import Markdown from "react-markdown";
 import rehypeHighlight from "rehype-highlight";
 import "highlight.js/styles/atom-one-dark.min.css";
+import "highlight.js/styles/atom-one-light.min.css";
 import { PiTerminalThin } from "react-icons/pi";
 import CopyButton from "./copy-button";
 
@@ -20,6 +21,9 @@ export default function MarkdownPreview({
         h1: ({ node, ...props }) => (
           <h1 className="text-4xl uppercase font-bold" {...props} />
         ),
+
+        // more custom components
+
         //custom code
         code: ({ node, className, children, ...props }) => {
           const match = /language-(\w+)/.exec(className || "");
@@ -58,8 +62,8 @@ export default function MarkdownPreview({
             );
           }
         },
-        // more custom components
       }}
+      className={className}
     >
       {content}
     </Markdown>
