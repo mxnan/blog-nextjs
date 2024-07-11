@@ -178,13 +178,13 @@ export default function BlogForm({
                   />
                   <div
                     className={cn(
-                      "lg:px-4",
+                      "",
                       isPreview
-                        ? "mx-auto w-full lg:w-5/6 "
-                        : "w-1/2 lg:block hidden"
+                        ? "mx-auto w-full text-4xl"
+                        : "w-1/2 lg:block hidden pl-4 text-2xl"
                     )}
                   >
-                    <h1 className="text-2xl font-medium font-title">
+                    <h1 className="  font-medium font-title">
                       {form.getValues().title}
                     </h1>
                   </div>
@@ -221,10 +221,10 @@ export default function BlogForm({
                   />
                   <div
                     className={cn(
-                      "lg:px-4",
+                      "",
                       isPreview
-                        ? "mx-auto w-full lg:w-5/6 "
-                        : "w-1/2 lg:block hidden"
+                        ? "mx-auto w-full  "
+                        : "w-1/2 lg:block hidden pl-4"
                     )}
                   >
                     {!isPreview ? (

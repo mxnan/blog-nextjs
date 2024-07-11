@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { Switch } from "@/components/ui/switch";
-import { readBlog, updateBlogbyId } from "@/lib/actions/blog";
+import { readBlogAdmin, updateBlogbyId } from "@/lib/actions/blog";
 import React from "react";
 import { FiEdit2 } from "react-icons/fi";
 import { PiEyeglassesLight } from "react-icons/pi";
@@ -11,15 +10,17 @@ import { BlogFormSchemaType } from "../schema";
 import Link from "next/link";
 
 const BlogTable = async () => {
-  const { data: blogs } = await readBlog();
+  const { data: blogs } = await readBlogAdmin();
 
   return (
     <div className="relative overflow-x-auto p-5 rounded-md">
-      <div className="w-[700px] md:w-full">
+      <div className="sm:w-[675px] md:w-full">
         <div className="grid grid-cols-5 p-5  ">
-          <h1 className="col-span-2">Title</h1>
-          <h1>Premium</h1>
-          <h1>Publish</h1>
+          <h1 className="col-span-2 font-title font-bold  sm:text-xl">Title</h1>
+          <h1 className="font-title font-bold  sm:text-xl">Premium</h1>
+          <h1 className="font-title font-bold max-sm:ml-8  sm:text-xl">
+            Publish
+          </h1>
         </div>
         <Separator
           orientation="horizontal"

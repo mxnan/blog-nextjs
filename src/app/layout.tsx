@@ -4,7 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { cn } from "@/lib/utils";
 
-import {  Orbitron, Roboto_Mono } from "next/font/google";
+import { Orbitron, Roboto_Mono } from "next/font/google";
 import Footer from "@/components/footer/footer";
 import Navbar from "@/components/nav/Navbar";
 import { Toaster } from "@/components/ui/sonner";
@@ -36,7 +36,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body
         className={cn(
-          "font-body antialiased bg-white dark:bg-black text-stone-700 dark:text-stone-300 ",
+          "font-body antialiased bg-white dark:bg-black text-stone-950 dark:text-stone-50 ",
           title.variable,
           body.variable
         )}

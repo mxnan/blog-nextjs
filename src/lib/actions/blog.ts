@@ -31,8 +31,18 @@ export async function createBlog(data: BlogFormSchemaType) {
   }
 }
 
-//function to read blog and display on dashboard
+//function to read blog and display on blog page
 export async function readBlog() {
+  const supabase = await createSupabaseServerClient();
+  return supabase
+    .from("blog")
+    .select("*")
+    .eq("is_published", true)
+    .order("created_at", { ascending: true });
+}
+
+//function to read blog and display on dashboard for admins , display on dashboard
+export async function readBlogAdmin() {
   const supabase = await createSupabaseServerClient();
   return supabase
     .from("blog")
