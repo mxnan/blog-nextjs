@@ -8,8 +8,8 @@ export const Footerlinks: Record<string, { name: string; href: string }[]> = {
       href: "/",
     },
     {
-      name: "Blogs",
-      href: "/blogs",
+      name: "Blog",
+      href: "/blog",
     },
     {
       name: "Contact",
