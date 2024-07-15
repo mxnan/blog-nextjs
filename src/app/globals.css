@@ -6,4 +6,7 @@
   .image-border {
     @apply border-[1px] border-zinc-300 dark:border-stone-600 shadow-sm shadow-zinc-400 dark:shadow-stone-600;
   }
+  .flexcenter {
+    @apply flex items-center justify-center;
+  }
 }

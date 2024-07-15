@@ -58,15 +58,29 @@ export async function deleteBlogbyId(blog_id: string) {
   return JSON.stringify(result);
 }
 
-//function for switch form
+//updateblog by their ids
 export async function updateBlogbyId(
   blog_id: string,
   data: BlogFormSchemaType
 ) {
   const supabase = await createSupabaseServerClient();
-  const result = await supabase.from("blog").update(data).eq("id", blog_id);
+
+  const { data: updatedBlog, error } = await supabase
+    .from("blog")
+    .update(data)
+    .eq("id", blog_id)
+    .select()
+    .single();
+
+  if (error) {
+    console.error("Error updating blog:", error);
+    return JSON.stringify({ error: { message: error.message } });
+  }
+
+  // Revalidate paths
   revalidatePath(DASHBOARD);
-  return JSON.stringify(result);
+  revalidatePath("/blog/" + blog_id);
+  return JSON.stringify({ data: updatedBlog });
 }
 
 //function to read blog content and display on edit page
@@ -86,7 +100,10 @@ export async function updateBlogDetailbyId(
 ) {
   const supabase = await createSupabaseServerClient();
   const { content, ...blogData } = data;
-  const resultBlog = await supabase.from("blog").update(blogData).eq("id", blog_id);
+  const resultBlog = await supabase
+    .from("blog")
+    .update(blogData)
+    .eq("id", blog_id);
   if (resultBlog.error) {
     return JSON.stringify(resultBlog);
   } else {
@@ -95,6 +112,7 @@ export async function updateBlogDetailbyId(
       .update({ content: data.content })
       .eq("blog_id", blog_id);
     revalidatePath(DASHBOARD);
+    revalidatePath("/blog/" + blog_id);
     return JSON.stringify(result);
   }
 }

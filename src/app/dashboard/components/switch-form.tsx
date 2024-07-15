@@ -18,7 +18,7 @@ export default function SwitchForm({
     if (error?.message) {
       toast.error(error.message);
     } else {
-      toast.success("Succesfully updated : " + `${name}`);
+      toast.success("Updated");
     }
   };
   return (

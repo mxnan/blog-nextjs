@@ -68,9 +68,11 @@ export default BlogTable;
 export const Actions = ({ id }: { id: string }) => {
   return (
     <div className="flex items-center gap-5 flex-wrap">
-      <Button variant={"outline"} className="flex items-center gap-2">
-        <PiEyeglassesLight className="w-5 h-5" /> View
-      </Button>
+      <Link href={"/blog/" + id}>
+        <Button variant={"outline"} className="flex items-center gap-2">
+          <PiEyeglassesLight className="w-5 h-5" /> View
+        </Button>
+      </Link>
       <DeleteAlert blogId={id} />
       <Link href={"/dashboard/blog/edit/" + id}>
         <Button variant={"outline"} className="flex items-center gap-2">
